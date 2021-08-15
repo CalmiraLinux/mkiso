@@ -7,7 +7,7 @@ if [ $(id -u) != 0 ]; then
 	exit 1
 fi
 
-if [ -z $1 ]; then
+if [ $# < 2 ]; then
 	echo "ERROR: Few command line arguments!"
 	exit 1
 fi
@@ -64,12 +64,12 @@ done
 echo "$DISTRONAME" > $WDIR/isolinux/venomlive
 [ -d livecd/virootfs ] && cp -aR livecd/virootfs $WDIR
 
-cp $CALM_ROOT/boot/{vmlinuz-5.13.3-calm-kernel,vmlinuz} $WDIR/boot/
+cp $CALM_ROOT/boot/{vmlinuz-*-calm-kernel,vmlinuz} $WDIR/boot/
 
-#mksquashfs $CALM_ROOT root.sfs                             \
-#	-b 1048576 -comp xz -Xdict-size 100%        \
-#	-e $CALM_ROOT/tmp/*                         \
-#	-e $CALM_ROOT/usr/src/*
+mksquashfs $CALM_ROOT root.sfs                             \
+	-b 1048576 -comp xz -Xdict-size 100%        \
+	-e $CALM_ROOT/tmp/*                         \
+	-e $CALM_ROOT/usr/src/*
 	
 cp root.sfs $WDIR/filesystem
 
