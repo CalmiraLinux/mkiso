@@ -33,7 +33,7 @@ trap "exit 1" SIGHUP SIGINT SIGQUIT SIGTERM
 ## Default parameter values ##
 ##############################
 
-CALMVERSION="1.1rc2"
+CALMVERSION="2.0dev"
 
 CWD=$PWD
 WDIR=/tmp/calmiso
